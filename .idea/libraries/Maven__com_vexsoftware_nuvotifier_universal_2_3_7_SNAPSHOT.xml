@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.vexsoftware:nuvotifier-universal:2.3.7-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vexsoftware/nuvotifier-universal/2.3.7-SNAPSHOT/nuvotifier-universal-2.3.7-20180406.055306-20.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vexsoftware/nuvotifier-universal/2.3.7-SNAPSHOT/nuvotifier-universal-2.3.7-20180406.055306-20-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/vexsoftware/nuvotifier-universal/2.3.7-SNAPSHOT/nuvotifier-universal-2.3.7-20180406.055306-20-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
