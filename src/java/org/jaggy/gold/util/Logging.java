@@ -56,4 +56,5 @@ public class Logging {
     public void log(Level Level, String str, Throwable ex) {
         Logging.log.log(Level,"[JaggyGold] " +str, ex);
     }
+
 }

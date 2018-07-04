@@ -1,5 +1,7 @@
 package org.jaggy.gold;
 
+import org.jaggy.gold.api.GoldManager;
+
 import java.sql.*;
 
 /**
@@ -9,15 +11,20 @@ public class DB {
     /**
      * Reference pointer to parent
      */
-    private final Main plugin;
+    private Main plugin;
     /**
      * Field to pass the table prefix along
      */
-    private final String Prefix;
+    private String Prefix;
     /**
      * Container to hold the db connection
      */
     private Connection db;
+    private int mysqlPort;
+    private String mysqlPass;
+    private String mysqlHost;
+    private String DBName;
+    private String mysqlUser;
 
     /**
      * Class constructor
@@ -25,12 +32,11 @@ public class DB {
      */
     public DB(Main main) {
         plugin = main;
-
-        String mysqlHost = plugin.config.getMysqlHost();
-        String mysqlUser = plugin.config.getMysqlUser();
-        String DBName = plugin.config.getDBName();
-        String mysqlPass = plugin.config.getMysqlPass();
-        int mysqlPort = plugin.config.getMysqlPort();
+        mysqlHost = plugin.config.getMysqlHost();
+        mysqlUser = plugin.config.getMysqlUser();
+        DBName = plugin.config.getDBName();
+        mysqlPass = plugin.config.getMysqlPass();
+        mysqlPort = plugin.config.getMysqlPort();
         Prefix = plugin.config.getPrefix();
         boolean useSSL = plugin.config.useSSL();
 
@@ -44,10 +50,19 @@ public class DB {
         } catch (ClassNotFoundException | SQLException ex) {
             plugin.log.severe(ex.getMessage());
         }
+
         if (db != null) {
             plugin.isLoaded = true;
+            createDB();
         }
     }
+
+    /**
+     * Access this class from GoldManager
+     */
+    public DB() {
+    }
+
 
     /**
      * Method to run a db query
@@ -71,7 +86,7 @@ public class DB {
     }
 
     private void createDB() {
-        query("CREATE TABLE IF NOT EXISTS " + Prefix + "Main (\n"
+        query("CREATE TABLE IF NOT EXISTS " + Prefix + "Gold (\n"
                 + "UID INT(64) NOT NULL AUTO_INCREMENT,\n"
                 + "Player VARCHAR(60),\n"
                 + "Gold INT(64) DEFAULT 0,\n"

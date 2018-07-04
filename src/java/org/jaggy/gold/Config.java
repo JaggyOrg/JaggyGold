@@ -1,6 +1,7 @@
 package org.jaggy.gold;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.jaggy.gold.api.GoldManager;
 
 import java.io.File;
 
@@ -8,7 +9,7 @@ public class Config {
     /**
      * Reference pointer to parent class
      */
-    private final Main plugin;
+    private Main plugin;
     /**
      * Container for the config.yml
      */
@@ -46,7 +47,7 @@ public class Config {
      * Class Constructor
      * @param main Passes the parent class to this class
      */
-    Config(Main main) {
+    public Config(Main main) {
         plugin = main;
 
         //load config.yml
@@ -59,6 +60,14 @@ public class Config {
         }
 
     }
+
+    /**
+     * Access this class for GoldManager
+     */
+    public Config() {
+
+    }
+
 
     /**
      * Gets the database name.
