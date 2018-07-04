@@ -1,6 +1,8 @@
-# If you want to have multiserver support this early in development use a
-# single mysql for all servers in your BungeeCord network.
-
+#
+#Database Settings:
+#
+# If you want to have multiserver support use a
+# single mysql database for all servers in your BungeeCord network.
 
 #Database name: It is the Mysql Database name
 DatabaseName: 'minecraft'
@@ -15,3 +17,10 @@ MysqlPass: ''
 DBPrefix: 'jaggygold_'
 #require ssl
 useSSL: false
+
+#
+# Votifier Support
+#
+
+# How much gold to get for voting.
+Votifier: 0.5

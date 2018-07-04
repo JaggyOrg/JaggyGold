@@ -89,7 +89,7 @@ public class DB {
         query("CREATE TABLE IF NOT EXISTS " + Prefix + "Gold (\n"
                 + "UID INT(64) NOT NULL AUTO_INCREMENT,\n"
                 + "Player VARCHAR(60),\n"
-                + "Gold INT(64) DEFAULT 0,\n"
+                + "Gold DOUBLE(12,2) DEFAULT 0,\n"
                 + "PRIMARY KEY (UID)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;"
         );
     }

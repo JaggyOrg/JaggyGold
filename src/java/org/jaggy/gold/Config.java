@@ -42,6 +42,11 @@ public class Config {
      * Set the default for SSL use
      */
     private boolean defaultSSL = false;
+    /**
+     * Set the default gold to give for Votifier
+     */
+    private double defaultVotifier = 0.5;
+
 
     /**
      * Class Constructor
@@ -120,6 +125,15 @@ public class Config {
      */
     public String getPrefix() {
         return config.getString("DBPrefix", defaultDBPrefix);
+    }
+
+    /**
+     * Gets the Votifier gold setting
+     *
+     * @return String
+     */
+    public Double getVotifier() {
+        return config.getDouble("Votifier", defaultVotifier);
     }
 
     /**
