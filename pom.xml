@@ -13,6 +13,11 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshot/</url>
         </repository>
+        <repository>
+            <id>parallelblock-public</id>
+            <name>ParallelBlock Public Repository</name>
+            <url>https://repo.parallelblock.com/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -20,6 +25,12 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vexsoftware</groupId>
+            <artifactId>nuvotifier-universal</artifactId>
+            <version>...</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
