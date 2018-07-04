@@ -12,7 +12,7 @@ public class Config {
     /**
      * Container for the config.yml
      */
-    FileConfiguration config;
+    private FileConfiguration config;
     /**
      * Sets the default Mysql Host.
      */

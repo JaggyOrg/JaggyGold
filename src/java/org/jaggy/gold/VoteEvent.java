@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
  * Listens and handles what to do votes when we get one
  * @author Quirkylee
  */
-public class VoteEvent implements Listener {
+class VoteEvent implements Listener {
     /**
      * Reference pointer to the Main class
      */

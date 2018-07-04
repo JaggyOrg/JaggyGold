@@ -14,8 +14,17 @@ public class Main extends JavaPlugin {
      * Pointer to Bukkit's plugin manager
      */
     private PluginManager manager;
+    /**
+     * Pointer to the config class
+     */
     public Config config;
+    /**
+     * Pointer to the DB class
+     */
     public DB db;
+    /**
+     * A boolean to use later if no connection to the db is made.
+     */
     public boolean isLoaded = false;
 
     /**
