@@ -14,6 +14,9 @@ public class Main extends JavaPlugin {
      * Pointer to Bukkit's plugin manager
      */
     private PluginManager manager;
+    public Config config;
+    public DB db;
+    public boolean isLoaded = false;
 
     /**
      * Load stuff we need done before we enable
@@ -21,6 +24,8 @@ public class Main extends JavaPlugin {
     public void onLoad() {
         manager = getServer().getPluginManager();
         log = new Logging();
+        config = new Config(this);
+        db = new DB(this);
     }
 
     /**
@@ -28,6 +33,9 @@ public class Main extends JavaPlugin {
      */
     public void onEnable() {
         //Register Event Listeners
-        manager.registerEvents(new VoteEvent(this), this);
+        if(manager.isPluginEnabled("Votifier")) {
+            manager.registerEvents(new VoteEvent(this), this);
+            log.info("Using NuVotifier hook.");
+        }
     }
 }

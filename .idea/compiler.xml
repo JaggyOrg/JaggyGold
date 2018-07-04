@@ -11,7 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Gold" target="1.5" />
-      <module name="JaggyGold" target="1.5" />
+      <module name="JaggyGold" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
