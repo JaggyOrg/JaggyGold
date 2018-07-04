@@ -1,6 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="JaggyGold:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/JaggyGold</output-path>
-    <root id="archive" name="JaggyGold.jar" />
+    <output-path>$PROJECT_DIR$/out/artifacts/JaggyGold_jar</output-path>
+    <root id="archive" name="JaggyGold.jar">
+      <element id="module-output" name="JaggyGold" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/bstats/bstats-bukkit/1.2/bstats-bukkit-1.2.jar" path-in-jar="/" />
+    </root>
   </artifact>
 </component>
