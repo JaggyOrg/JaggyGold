@@ -3,6 +3,7 @@ package org.jaggy.gold;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jaggy.gold.util.Logging;
+import org.bstats.bukkit.Metrics;
 
 public class Main extends JavaPlugin {
     /**
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin {
      */
     public void onEnable() {
         //Register Event Listeners
+        Metrics metrics = new Metrics(this);
         if(manager.isPluginEnabled("Votifier")) {
             manager.registerEvents(new VoteEvent(this), this);
             log.info("Using NuVotifier hook.");
