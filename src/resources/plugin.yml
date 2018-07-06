@@ -3,3 +3,8 @@ main: org.jaggy.gold.Main
 version: 1.0-SNAPSHOT
 author: Quirkylee, Markjat
 softdepend: [Votifier]
+
+commands:
+   goldshop:
+      description: Main command
+      usage: /goldshop

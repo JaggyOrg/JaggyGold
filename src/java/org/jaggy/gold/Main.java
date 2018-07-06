@@ -1,9 +1,11 @@
 package org.jaggy.gold;
 
+import org.bstats.Metrics;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jaggy.gold.cmds.GoldShop;
+import org.jaggy.gold.gui.GuiManager;
 import org.jaggy.gold.util.Logging;
-import org.bstats.bukkit.Metrics;
 
 public class Main extends JavaPlugin {
     /**
@@ -14,7 +16,7 @@ public class Main extends JavaPlugin {
     /**
      * Pointer to Bukkit's plugin manager
      */
-    private PluginManager manager;
+    public PluginManager manager;
     /**
      * Pointer to the config class
      */
@@ -27,6 +29,10 @@ public class Main extends JavaPlugin {
      * A boolean to use later if no connection to the db is made.
      */
     public boolean isLoaded = false;
+    /**
+     * Container for gui manager
+     */
+    public GuiManager gui;
 
     /**
      * Load stuff we need done before we enable
@@ -36,6 +42,7 @@ public class Main extends JavaPlugin {
         log = new Logging();
         config = new Config(this);
         db = new DB(this);
+
     }
 
     /**
@@ -48,5 +55,10 @@ public class Main extends JavaPlugin {
             manager.registerEvents(new VoteEvent(this), this);
             log.info("Using NuVotifier hook.");
         }
+
+        //Load GUI Manager
+        gui = new GuiManager(this);
+        //register goldshop command
+        this.getCommand("goldshop").setExecutor(new GoldShop(this));
     }
 }
