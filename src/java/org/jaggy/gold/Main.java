@@ -42,8 +42,8 @@ public class Main extends JavaPlugin {
      * Start up the plugin
      */
     public void onEnable() {
-        //Register Event Listeners
         Metrics metrics = new Metrics(this);
+        //Register Event Listeners
         if(manager.isPluginEnabled("Votifier")) {
             manager.registerEvents(new VoteEvent(this), this);
             log.info("Using NuVotifier hook.");
