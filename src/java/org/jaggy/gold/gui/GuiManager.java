@@ -1,7 +1,12 @@
 package org.jaggy.gold.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
 import org.jaggy.gold.Main;
 import org.jaggy.gold.cmds.GoldShop;
 import org.json.simple.JSONArray;
@@ -12,6 +17,8 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.logging.Level;
 
@@ -39,8 +46,24 @@ public class GuiManager {
         while (it.hasNext()) {
             JSONObject item = (JSONObject) it.next();
             String name = (String) item.get("name");
-            plugin.log.info(item.toString());
+            String icon = (String) item.get("icon");
+            String location = (String) item.get("location");
+            String type = (String) item.get("type");
+            String label = (String) item.get("label");
+            inventory.addItem(createGuiItem(name,new ArrayList<String>(Arrays.asList(label)),Material.getMaterial(icon)));
         }
+    }
+
+    /**
+     * Nice little method to create a gui item with a custom name, and description
+     */
+    public ItemStack createGuiItem(String name, ArrayList<String> desc, Material mat) {
+        ItemStack i = new ItemStack(mat, 1);
+        ItemMeta iMeta = i.getItemMeta();
+        iMeta.setDisplayName(name);
+        iMeta.setLore(desc);
+        i.setItemMeta(iMeta);
+        return i;
     }
 
     /**

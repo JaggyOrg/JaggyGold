@@ -1,15 +1,16 @@
 {
   "menus": [
     {"name": "Purchase Gold Coins",
-      "icon": "266",
+      "icon": "gold_ingot",
       "location": "3,4",
+      "label": "We support paypal transactions.",
       "type": "menu",
       "items": [
-        {"label": "300 Coins: $3.00 USD", "location": "3,2", "icon": "266", "action": "paypal",
+        {"label": "300 Coins: $3.00 USD", "location": "3,2", "icon": "gold_ingot", "action": "paypal",
           "amount": "300", "price": 3.00 },
-        {"label": "900 Coins: $8.50 USD", "location": "3,3", "icon": "266", "action": "paypal",
+        {"label": "900 Coins: $8.50 USD", "location": "3,3", "icon": "gold_ingot", "action": "paypal",
           "amount": "900", "price": 8.50 },
-        {"label": "1600 Coins: $12.00 USD", "location": "3,4", "icon": "266", "action": "paypal",
+        {"label": "1600 Coins: $12.00 USD", "location": "3,4", "icon": "gold_ingot", "action": "paypal",
           "amount": "1600", "price": 12.00 }
       ]
     },
@@ -17,35 +18,38 @@
       "icon": "276",
       "location": "3,5",
       "type": "menu",
+      "label": "Want an Jaggy Sword?",
       "items": [
-        {"label": "Jaggy Sword", "location": "3,5", "icon": "276", "action": "enchant",
-          "itemid": "276", "gold": 1600, "enchants": "smite:5,sharpness:5,unbreaking:5,Looting:5,Mending:1,Fire Aspect:2,Bane of Arthropods:5,Kockback:2" },
-        {"label": "Excalibur", "location": "3,6", "icon": "267", "action": "enchant",
-          "itemid": "267", "gold": 800, "enchants": "smite:5,sharpness:5,unbreaking:3,Looting:5,Mending:1,Bane of Arthropods:5,Knockback:2" }
+        {"label": "Jaggy Sword", "location": "3,5", "icon": "diamond_sword", "action": "enchant",
+          "itemid": "diamond_sword", "gold": 1600, "enchants": "smite:5,sharpness:5,unbreaking:5,Looting:5,Mending:1,Fire Aspect:2,Bane of Arthropods:5,Kockback:2" },
+        {"label": "Excalibur", "location": "3,6", "icon": "iron_sword", "action": "enchant",
+          "itemid": "iron_sword", "gold": 800, "enchants": "smite:5,sharpness:5,unbreaking:3,Looting:5,Mending:1,Bane of Arthropods:5,Knockback:2" }
       ]
     },
     {"name": "Armor",
       "icon": "311",
       "location": "3,6",
+      "label": "Get some Jaggy suit.",
       "type": "menu",
       "items": [
-        {"label": "Jaggy Chestplate", "location": "3,5", "icon": "311", "action": "enchant",
-          "itemid": "311", "gold": 1600, "enchants": "Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
-        {"label": "Jaggy Boots", "location": "3,6", "icon": "313", "action": "enchant",
-          "itemid": "313", "gold": 1600, "enchants": "Unbreaking:3,Feather Falling:4,Depth Strider:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
-        {"label": "Jaggy Leggings", "location": "3,7", "icon": "312", "action": "enchant",
-          "itemid": "312", "gold": 1600, "enchants": "Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
-        {"label": "Jaggy Helmet", "location": "3,7", "icon": "310", "action": "enchant",
-          "itemid": "310", "gold": 1600, "enchants": "Aqua Affinity:1,Respiration:3,Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" }
+        {"label": "Jaggy Chestplate", "location": "3,5", "icon": "diamond_chestplate", "action": "enchant",
+          "itemid": "diamond_chestplate", "gold": 1600, "enchants": "Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
+        {"label": "Jaggy Boots", "location": "3,6", "icon": "diamond_boots", "action": "enchant",
+          "itemid": "diamond_boots", "gold": 1600, "enchants": "Unbreaking:3,Feather Falling:4,Depth Strider:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
+        {"label": "Jaggy Leggings", "location": "3,7", "icon": "diamond_leggings", "action": "enchant",
+          "itemid": "diamond_leggings", "gold": 1600, "enchants": "Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" },
+        {"label": "Jaggy Helmet", "location": "3,7", "icon": "diamond_helmet", "action": "enchant",
+          "itemid": "diamond_helmet", "gold": 1600, "enchants": "Aqua Affinity:1,Respiration:3,Unbreaking:3,Mending:1,Blast Protection:4,Fire Protection:4,Projectile Protection:4,Protection:4" }
       ]
     },
     {"name": "Items",
-      "icon": "399",
+      "icon": "nether_star",
       "location": "3,7",
+      "label": "Rare Items.",
       "type": "menu",
       "items": [
-        {"label": "Nether Star", "location": "3,5", "icon": "399", "action": "Item",
-          "itemid": "399", "gold": 800 }
+        {"label": "Nether Star", "location": "3,5", "icon": "nether_star", "action": "Item",
+          "itemid": "nether_star", "gold": 800 }
       ]
     }
   ]
