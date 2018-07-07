@@ -3,6 +3,7 @@ package org.jaggy.gold.cmds;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jaggy.gold.Main;
 
 public class GoldShop implements CommandExecutor {
@@ -12,8 +13,10 @@ public class GoldShop implements CommandExecutor {
         plugin = main;
     }
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        plugin.gui.displayMainMenu();
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
+        if (sender instanceof Player) {
+            plugin.gui.displayMainMenu(((Player) sender).getPlayer());
+        }
         return true;
     }
 }

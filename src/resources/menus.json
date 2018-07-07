@@ -2,7 +2,7 @@
   "menus": [
     {"name": "Purchase Gold Coins",
       "icon": "gold_ingot",
-      "location": "3,4",
+      "location": "21",
       "label": "We support paypal transactions.",
       "type": "menu",
       "items": [
@@ -15,8 +15,8 @@
       ]
     },
     {"name": "Weapons",
-      "icon": "276",
-      "location": "3,5",
+      "icon": "diamond_sword",
+      "location": "22",
       "type": "menu",
       "label": "Want an Jaggy Sword?",
       "items": [
@@ -27,9 +27,9 @@
       ]
     },
     {"name": "Armor",
-      "icon": "311",
-      "location": "3,6",
-      "label": "Get some Jaggy suit.",
+      "icon": "diamond_chestplate",
+      "location": "23",
+      "label": "Get a Jaggy suit.",
       "type": "menu",
       "items": [
         {"label": "Jaggy Chestplate", "location": "3,5", "icon": "diamond_chestplate", "action": "enchant",
@@ -44,7 +44,7 @@
     },
     {"name": "Items",
       "icon": "nether_star",
-      "location": "3,7",
+      "location": "24",
       "label": "Rare Items.",
       "type": "menu",
       "items": [
