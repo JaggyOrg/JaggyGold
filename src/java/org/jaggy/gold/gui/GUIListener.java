@@ -19,6 +19,7 @@ public class GUIListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         //escape if not a player
         Inventory inventory = event.getClickedInventory();
+        Inventory mainInv = manager.inventory;
         if (!(event.getWhoClicked() instanceof Player)) {
             return;
         }
@@ -27,14 +28,14 @@ public class GUIListener implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         //escape if it isn't our inventory
-        if (!inventory.getName().equals(manager.inventory.getName())) {
+        if (!inventory.getName().equals(mainInv.getName())) {
             return;
         }
 
         event.setCancelled(true);
 
         ItemStack item = event.getCurrentItem();
-        // What if the clicked item is null? Nullpointer, so return.
+        // What if the clicked item is null? Null pointer, so return.
         if (item == null) {
             return;
         }
@@ -47,6 +48,11 @@ public class GUIListener implements Listener {
 
         // What if the clicked item has no display name? Null pointer, so return.
         if (!meta.hasDisplayName()) {
+            return;
+        }
+        // What if the clicked item is the back button.
+        if (meta.getDisplayName().equals("Back")) {
+            manager.displayMainMenu(player);
             return;
         }
         manager.accessItem(player, meta.getDisplayName());

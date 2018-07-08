@@ -21,19 +21,24 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 
 public class GuiManager {
-    private final Main plugin;
+    private Main plugin;
     /**
      * Container for the menus
      */
     public JSONObject menus;
+    /**
+     * Container to store generated inventory
+     */
     public Inventory inventory;
+
+    /**
+     * Item registry
+     */
+    public HashMap registry;
 
     public GuiManager(Main main) {
         plugin = main;
@@ -47,36 +52,44 @@ public class GuiManager {
     public void displayMainMenu(Player player) {
         JSONArray array = (JSONArray) menus.get("menus");
         Iterator it = array.iterator();
-
+        registry = new HashMap();
         inventory = Bukkit.createInventory(null, 54, "Gold Shop");
         while (it.hasNext()) {
             JSONObject item = (JSONObject) it.next();
-            String name = (String) item.get("name");
-            String icon = (String) item.get("icon");
-            String location = (String) item.get("location");
-            String type = (String) item.get("type");
-            String label = (String) item.get("label");
-            Material mat = Material.matchMaterial(icon);
-            ScriptEngineManager mgr = new ScriptEngineManager();
-            ScriptEngine engine = mgr.getEngineByName("JavaScript");
-            try {
-                inventory.setItem((Integer) engine.eval(location), createGuiItem(name, label, mat));
-            } catch (ScriptException e) {
-                e.printStackTrace();
+            //Create menu item
+            MenuItem menuItem = new MenuItem((String) item.get("name"),
+                    (String) item.get("icon"), (String) item.get("action"), (String) item.get("type"),
+                    (String) item.get("description"), Material.matchMaterial((String) item.get("icon")));
+
+            //Convert into integer and set the location
+            menuItem.setLocation((String) item.get("location"));
+
+            //Convert into array and store the object data.
+            String enchants = (String) item.get("enchants");
+            if (enchants != null) {
+                menuItem.setEnchantments((String) item.get("enchants"));
             }
+            JSONArray items = (JSONArray) item.get("items");
+            if (!items.isEmpty()) {
+                menuItem.setItems(items);
+            }
+            registry.put(item.get("name"), menuItem);
+            //Add item to inventory
+            inventory.setItem(menuItem.location, createGuiItem(menuItem));
         }
+        //Open inventory menu
         player.openInventory(inventory);
     }
 
     /**
-     * Nice little method to create a gui item with a custom name, and description
+     * Create a gui item with a custom name, and description
      */
-    public ItemStack createGuiItem(String name, String desc, Material mat) {
-        ItemStack i = new ItemStack(mat, 1);
+    public ItemStack createGuiItem(MenuItem menuItem) {
+        ItemStack i = new ItemStack(menuItem.material, 1);
         ItemMeta iMeta = i.getItemMeta();
-        iMeta.setDisplayName(name);
+        iMeta.setDisplayName(menuItem.name);
         ArrayList<String> Lore = new ArrayList<String>();
-        Lore.add(desc);
+        Lore.add(menuItem.description);
         iMeta.setLore(Lore);
         i.setItemMeta(iMeta);
         return i;
@@ -107,50 +120,44 @@ public class GuiManager {
      * @param menu
      */
     public void accessItem(Player player, String menu) {
-        JSONArray array = (JSONArray) menus.get("menus");
-        Iterator it = array.iterator();
-        String type;
-
-        while (it.hasNext()) {
-            JSONObject item = (JSONObject) it.next();
-            String name = (String) item.get("name");
-            if (menu.equals(name)) {
-                type = (String) item.get("type");
-                if (type.equals("menu")) {
-                    JSONArray items = (JSONArray) item.get("items");
-                    plugin.log.info(items.toString());
-                    //subMenu(player, items);
-                } else {
-                    action(item);
-                }
-                return;
-            }
-
+        MenuItem item = (MenuItem) registry.get(menu);
+        if (item.type.equals("menu")) {
+            JSONArray items = item.items;
+            subMenu(player, items);
+        } else {
+            action(item);
         }
     }
 
-    private void subMenu(Player player, JSONArray items) { ;
+    private void subMenu(Player player, JSONArray items) {
+        JSONObject back = new JSONObject();
+        back.put("name", "Back");
+        back.put("icon", "BARRIER");
+        back.put("location", "0");
+        back.put("description", "Back to main menu.");
+        items.add(back);
         Iterator it = items.iterator();
-
-        inventory = Bukkit.createInventory(null, 54, "Gold Shop");
+        registry = new HashMap();
+        Inventory subInv = Bukkit.createInventory(null, 54, "Gold Shop");
         while (it.hasNext()) {
             JSONObject item = (JSONObject) it.next();
-            String name = (String) item.get("name");
-            String icon = (String) item.get("icon");
-            String location = (String) item.get("location");
-            String type = (String) item.get("type");
-            String label = (String) item.get("label");
-            plugin.log.info(label);
-            Material mat = Material.matchMaterial(icon);
-            ScriptEngineManager mgr = new ScriptEngineManager();
-            ScriptEngine engine = mgr.getEngineByName("JavaScript");
-            try {
-                inventory.setItem((Integer) engine.eval(location), createGuiItem(name, label, mat));
-            } catch (ScriptException e) {
-                e.printStackTrace();
+            //Create menu item
+            MenuItem menuItem = new MenuItem((String) item.get("name"),
+                    (String) item.get("icon"), (String) item.get("action"), (String) item.get("type"),
+                    (String) item.get("description"), Material.matchMaterial((String) item.get("icon")));
+
+            //Convert into integer and set the location
+            menuItem.setLocation((String) item.get("location"));
+
+            //Convert into array and store the object data.
+            if (item.get("enchants") != null) {
+                menuItem.setEnchantments((String) item.get("enchants"));
             }
+            // Add item
+            registry.put((String) item.get("name"), menuItem);
+            subInv.setItem(menuItem.location, createGuiItem(menuItem));
         }
-        player.openInventory(inventory);
+        player.openInventory(subInv);
 
     }
 
@@ -158,7 +165,7 @@ public class GuiManager {
      * Process item requests.
      * @param item
      */
-    private void action(JSONObject item) {
+    private void action(MenuItem item) {
 
     }
 }
