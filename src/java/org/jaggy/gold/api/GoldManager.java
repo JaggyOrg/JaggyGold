@@ -1,6 +1,5 @@
 package org.jaggy.gold.api;
 
-import org.bukkit.entity.Player;
 import org.jaggy.gold.Config;
 import org.jaggy.gold.DB;
 import org.jaggy.gold.Main;

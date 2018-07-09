@@ -2,28 +2,28 @@ package org.jaggy.gold.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.HumanEntity;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 import org.jaggy.gold.Main;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.logging.Level;
 
+/**
+ * GUI Manager Class
+ */
 public class GuiManager {
     private Main plugin;
     /**
@@ -91,6 +91,16 @@ public class GuiManager {
         ArrayList<String> Lore = new ArrayList<String>();
         Lore.add(menuItem.description);
         iMeta.setLore(Lore);
+
+        //add enchantments to item
+        for (String enchantment: menuItem.enchants) {
+            String[] args = enchantment.split(":", 2);
+            int level = Integer.parseInt(args[1]);
+            String name = args[0];
+            Enchantment enchant = this.getEnchant(name);
+            iMeta.addEnchant(enchant, level, true);
+        }
+
         i.setItemMeta(iMeta);
         return i;
     }
@@ -167,5 +177,47 @@ public class GuiManager {
      */
     private void action(MenuItem item) {
 
+    }
+
+    /**
+     * Convers String name into enchantment.
+     * @param name Name of the enchantment
+     * @return The enchantment we need to enchant item
+     */
+    public Enchantment getEnchant(String name) {
+        Enchantment enchant = null;
+        switch (name.toLowerCase()) {
+            case "aqua_affinity": enchant = Enchantment.WATER_WORKER; break;
+            case "bane_of_arthropods": enchant = Enchantment.DAMAGE_ARTHROPODS; break;
+            case "blast_protection": enchant = Enchantment.PROTECTION_EXPLOSIONS; break;
+            case "binding_curse": enchant = Enchantment.BINDING_CURSE; break;
+            case "vanishing_curse": enchant = Enchantment.VANISHING_CURSE; break;
+            case "depth_strider": enchant = Enchantment.DEPTH_STRIDER; break;
+            case "efficiency": enchant = Enchantment.DIG_SPEED; break;
+            case "feather_falling": enchant = Enchantment.PROTECTION_FALL; break;
+            case "fire_aspect": enchant = Enchantment.FIRE_ASPECT; break;
+            case "fire_protection": enchant = Enchantment.PROTECTION_FIRE; break;
+            case "flame": enchant = Enchantment.ARROW_FIRE; break;
+            case "fortune": enchant = Enchantment.LOOT_BONUS_BLOCKS; break;
+            case "frost_walker": enchant = Enchantment.FROST_WALKER; break;
+            case "infinity": enchant = Enchantment.ARROW_INFINITE; break;
+            case "knockback": enchant = Enchantment.KNOCKBACK; break;
+            case "looting": enchant = Enchantment.LOOT_BONUS_MOBS; break;
+            case "luck_of_the_sea": enchant = Enchantment.LUCK; break;
+            case "lure": enchant = Enchantment.LURE; break;
+            case "mending": enchant = Enchantment.MENDING; break;
+            case "power": enchant = Enchantment.ARROW_KNOCKBACK; break;
+            case "projectile_protection": enchant = Enchantment.PROTECTION_PROJECTILE; break;
+            case "protection": enchant = Enchantment.PROTECTION_ENVIRONMENTAL; break;
+            case "punch": enchant = Enchantment.ARROW_DAMAGE; break;
+            case "respiration": enchant = Enchantment.OXYGEN; break;
+            case "sharpness": enchant = Enchantment.DAMAGE_ALL; break;
+            case "silk_touch": enchant = Enchantment.SILK_TOUCH; break;
+            case "smite": enchant = Enchantment.DAMAGE_ALL; break;
+            case "sweeping": enchant = Enchantment.SWEEPING_EDGE; break;
+            case "thorns": enchant = Enchantment.THORNS; break;
+            case "unbreaking": enchant = Enchantment.DURABILITY; break;
+        }
+        return enchant;
     }
 }

@@ -2,14 +2,10 @@ package org.jaggy.gold.gui;
 
 import org.bukkit.Material;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Menu Item Object Class
@@ -46,7 +42,7 @@ public class MenuItem {
     /**
      * Stores a list of enchantments
      */
-    public ArrayList<String> enchants;
+    public ArrayList<String> enchants = new ArrayList<String>();
 
     /**
      * Store child items of menu
@@ -69,18 +65,13 @@ public class MenuItem {
     public void setEnchantments(String enchantments) {
         if (!enchantments.isEmpty()) {
             String[] args = enchantments.split(",");
-            enchants.addAll(Arrays.asList(args));
+            Collection<String> list = Arrays.asList(args);
+            this.enchants.addAll(list);
         }
     }
 
     public void setLocation(String location) {
-        ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        try {
-            this.location = (Integer) engine.eval(location);
-        } catch (ScriptException e) {
-            e.printStackTrace();
-        }
+        this.location = Integer.parseInt(location);
     }
 
     public void setItems(JSONArray items) {

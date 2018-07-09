@@ -1,0 +1,37 @@
+This is a list of safe enchantments you can use:
+
+NAME:                   MAX LEVEL:
+aqua_affinity           1
+bane_of_arthropods      5
+blast_protection        4
+channeling (1.13+)      1
+binding_curse           1
+vanishing_curse         1
+depth_strider           3
+efficiency              5
+feather_falling         4
+fire_aspect             2
+fire_protection         4
+flame                   1
+fortune                 3
+frost_walker            2
+impaling (1.13+)        5
+infinity                1
+knockback               2
+looting                 3
+loyalty (1.13+)         3
+luck_of_the_sea         3
+lure                    3
+mending                 1
+power                   5
+projectile_protection   4
+protection              4
+punch                   2
+respiration             3
+riptide (1.13+)         3
+sharpness               5
+silk_touch              1
+smite                   5
+sweeping                3
+thorns                  3
+unbreaking              3

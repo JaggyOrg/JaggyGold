@@ -1,6 +1,5 @@
 package org.jaggy.gold;
 
-import com.vexsoftware.votifier.VoteHandler;
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 import org.bukkit.event.EventHandler;

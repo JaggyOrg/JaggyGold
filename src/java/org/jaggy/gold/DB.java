@@ -1,7 +1,5 @@
 package org.jaggy.gold;
 
-import org.jaggy.gold.api.GoldManager;
-
 import java.sql.*;
 
 /**

@@ -42,7 +42,7 @@ public class Main extends JavaPlugin {
         log = new Logging();
         config = new Config(this);
         db = new DB(this);
-
+        this.saveResources();
     }
 
     /**
@@ -60,5 +60,12 @@ public class Main extends JavaPlugin {
         gui = new GuiManager(this);
         //register goldshop command
         this.getCommand("goldshop").setExecutor(new GoldShop(this));
+    }
+
+    /**
+     * Saves Informational resources to data folder
+     */
+    private void saveResources() {
+        this.saveResource("Enchantments.txt", true);
     }
 }

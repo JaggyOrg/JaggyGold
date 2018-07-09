@@ -1,7 +1,6 @@
 package org.jaggy.gold;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.jaggy.gold.api.GoldManager;
 
 import java.io.File;
 
@@ -70,7 +69,6 @@ public class Config {
      * Access this class for GoldManager
      */
     public Config() {
-
     }
 
 
