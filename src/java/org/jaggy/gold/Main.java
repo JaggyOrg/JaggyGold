@@ -1,8 +1,12 @@
 package org.jaggy.gold;
 
 import org.bstats.Metrics;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jaggy.gold.api.GoldManager;
+import org.jaggy.gold.cmds.Gold;
 import org.jaggy.gold.cmds.GoldShop;
 import org.jaggy.gold.gui.GuiManager;
 import org.jaggy.gold.util.Logging;
@@ -33,6 +37,7 @@ public class Main extends JavaPlugin {
      * Container for gui manager
      */
     public GuiManager gui;
+    public GoldManager api;
 
     /**
      * Load stuff we need done before we enable
@@ -42,6 +47,7 @@ public class Main extends JavaPlugin {
         log = new Logging();
         config = new Config(this);
         db = new DB(this);
+        api = new GoldManager();
         this.saveResources();
     }
 
@@ -53,13 +59,14 @@ public class Main extends JavaPlugin {
         //Register Event Listeners
         if(manager.isPluginEnabled("Votifier")) {
             manager.registerEvents(new VoteEvent(this), this);
-            log.info("Using NuVotifier hook.");
+            log.info("Using Votifier hook.");
         }
 
         //Load GUI Manager
         gui = new GuiManager(this);
         //register goldshop command
         this.getCommand("goldshop").setExecutor(new GoldShop(this));
+        this.getCommand("gold").setExecutor(new Gold(this));
     }
 
     /**
@@ -67,5 +74,13 @@ public class Main extends JavaPlugin {
      */
     private void saveResources() {
         this.saveResource("Enchantments.txt", true);
+    }
+
+    public void sendMessage(CommandSender sender, String message) {
+        if(sender instanceof Player) {
+            sender.sendMessage(message);
+        } else {
+            log.info(message);
+        }
     }
 }

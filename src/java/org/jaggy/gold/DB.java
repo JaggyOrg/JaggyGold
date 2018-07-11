@@ -30,6 +30,10 @@ public class DB {
      */
     public DB(Main main) {
         plugin = main;
+        this.load();
+    }
+
+    public void load() {
         mysqlHost = plugin.config.getMysqlHost();
         mysqlUser = plugin.config.getMysqlUser();
         DBName = plugin.config.getDBName();
@@ -53,12 +57,6 @@ public class DB {
             plugin.isLoaded = true;
             createDB();
         }
-    }
-
-    /**
-     * Access this class from GoldManager
-     */
-    public DB() {
     }
 
 
@@ -87,8 +85,17 @@ public class DB {
         query("CREATE TABLE IF NOT EXISTS " + Prefix + "Gold (\n"
                 + "UID INT(64) NOT NULL AUTO_INCREMENT,\n"
                 + "Player VARCHAR(60),\n"
-                + "Gold DOUBLE(12,2) DEFAULT 0,\n"
+                + "Gold INT(30) DEFAULT 0,\n"
                 + "PRIMARY KEY (UID)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;"
         );
+    }
+
+    public void reload() {
+        try {
+            db.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.load();
     }
 }

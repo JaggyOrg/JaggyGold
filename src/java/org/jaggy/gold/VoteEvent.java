@@ -32,7 +32,7 @@ class VoteEvent implements Listener {
     public void OnVote(VotifierEvent event) {
         Vote vote = event.getVote();
         String user = vote.getUsername();
-        Double gold = plugin.config.getVotifier();
+        Long gold = plugin.config.getVotifier();
 
         GoldManager manager = new GoldManager();
         manager.addGold(user, gold);

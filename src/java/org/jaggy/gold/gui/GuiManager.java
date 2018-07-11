@@ -1,6 +1,7 @@
 package org.jaggy.gold.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -60,7 +62,7 @@ public class GuiManager {
             MenuItem menuItem = new MenuItem((String) item.get("name"),
                     (String) item.get("icon"), (String) item.get("action"), (String) item.get("type"),
                     (String) item.get("description"), Material.matchMaterial((String) item.get("icon")));
-
+            menuItem.setAmount((Long) item.get("gold"));
             //Convert into integer and set the location
             menuItem.setLocation((String) item.get("location"));
 
@@ -127,15 +129,17 @@ public class GuiManager {
     /**
      * Parses menus object to see if the item is a menu or item. If it is an item
      * do the necessary actions.
-     * @param menu
+     * @param selected
      */
-    public void accessItem(Player player, String menu) {
-        MenuItem item = (MenuItem) registry.get(menu);
-        if (item.type.equals("menu")) {
+    public void accessItem(Player player, String selected) {
+        MenuItem item = (MenuItem) registry.get(selected);
+        String type = item.type.toLowerCase();
+
+        if (type.equals("menu")) {
             JSONArray items = item.items;
             subMenu(player, items);
         } else {
-            action(item);
+            action(player, item);
         }
     }
 
@@ -155,7 +159,7 @@ public class GuiManager {
             MenuItem menuItem = new MenuItem((String) item.get("name"),
                     (String) item.get("icon"), (String) item.get("action"), (String) item.get("type"),
                     (String) item.get("description"), Material.matchMaterial((String) item.get("icon")));
-
+            menuItem.setAmount((Long) item.get("gold"));
             //Convert into integer and set the location
             menuItem.setLocation((String) item.get("location"));
 
@@ -175,12 +179,22 @@ public class GuiManager {
      * Process item requests.
      * @param item
      */
-    private void action(MenuItem item) {
-
+    private void action(Player player, MenuItem item) {
+        long balance = plugin.api.getBalance(player);
+        long cost = item.amount;
+        long total = balance - cost;
+        if (total < 0) {
+            player.sendMessage(ChatColor.GOLD+"You do not have enough gold coins.");
+        } else {
+            plugin.api.subGold(player, cost);
+            ItemStack spawner = createGuiItem(item);
+            player.getInventory().addItem(spawner);
+        }
     }
 
+
     /**
-     * Convers String name into enchantment.
+     * Converts String name into enchantment.
      * @param name Name of the enchantment
      * @return The enchantment we need to enchant item
      */
@@ -213,7 +227,7 @@ public class GuiManager {
             case "respiration": enchant = Enchantment.OXYGEN; break;
             case "sharpness": enchant = Enchantment.DAMAGE_ALL; break;
             case "silk_touch": enchant = Enchantment.SILK_TOUCH; break;
-            case "smite": enchant = Enchantment.DAMAGE_ALL; break;
+            case "smite": enchant = Enchantment.DAMAGE_UNDEAD; break;
             case "sweeping": enchant = Enchantment.SWEEPING_EDGE; break;
             case "thorns": enchant = Enchantment.THORNS; break;
             case "unbreaking": enchant = Enchantment.DURABILITY; break;

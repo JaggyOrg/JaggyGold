@@ -1,30 +1,14 @@
 {
   "menus": [
-    {"name": "Purchase Gold Coins",
-      "icon": "gold_nugget",
-      "location": "21",
-      "description": "We support paypal transactions.",
-      "type": "menu",
-      "items": [
-        {"name":"300 Coins", "description": "$3.00 USD", "location": "21", "icon": "gold_nugget", "action": "paypal",
-          "amount": "300", "price": 3.00 },
-        {"name": "900 Coins", "description": "$8.50 USD", "location": "22", "icon": "gold_nugget", "action": "paypal",
-          "amount": "900", "price": 8.50 },
-        {"name": "1600 Coins", "description": "$12.00 USD", "location": "23", "icon": "gold_nugget", "action": "paypal",
-          "amount": "1600", "price": 12.00 },
-        {"name": "3200 Coins", "description": "$22.00 USD", "location": "24", "icon": "gold_nugget", "action": "paypal",
-          "amount": "3200", "price": 22.00 }
-      ]
-    },
     {"name": "Weapons",
       "icon": "diamond_sword",
       "location": "22",
       "type": "menu",
       "description": "Want an Jaggy Sword?",
       "items": [
-        {"name": "Jaggy Sword", "description": "A sword forged in the ancient days by Jaggy.", "location": "21", "icon": "diamond_sword", "action": "enchant",
+        {"name": "Jaggy Sword", "type": "item", "description": "A sword forged in the ancient days by Jaggy. 1600 Gold", "location": "21", "icon": "diamond_sword", "action": "enchant",
           "gold": 1600, "enchants": "smite:5,sharpness:5,unbreaking:5,looting:5,mending:1,fire_aspect:2,bane_of_arthropods:5,knockback:2" },
-        {"name": "Excalibur", "description": "You to can own Excalibur.", "location": "22", "icon": "iron_sword", "action": "enchant",
+        {"name": "Excalibur", "type": "item", "description": "You to can own Excalibur.", "location": "22", "icon": "iron_sword", "action": "enchant",
           "gold": 800, "enchants": "smite:5,sharpness:5,unbreaking:3,looting:5,mending:1,bane_of_arthropods:5,knockback:2" }
       ]
     },
@@ -34,13 +18,13 @@
       "description": "Get a Jaggy suit.",
       "type": "menu",
       "items": [
-        {"name": "Jaggy Chestplate", "description": "A chestplate forged in the ancient days by Jaggy.", "location": "20", "icon": "diamond_chestplate", "action": "enchant",
+        {"name": "Jaggy Chestplate", "type": "item", "description": "A chestplate forged in the ancient days by Jaggy. 1600 Gold", "location": "20", "icon": "diamond_chestplate", "action": "enchant",
           "gold": 1600, "enchants": "unbreaking:3,mending:1,blast_protection:4,fire_protection:4,projectile_protection:4,protection:4" },
-        {"name": "Jaggy Boots", "description": "Boots forged in the ancient days by Jaggy.", "location": "21", "icon": "diamond_boots", "action": "enchant",
+        {"name": "Jaggy Boots", "type": "item", "description": "Boots forged in the ancient days by Jaggy. 1600 Gold", "location": "21", "icon": "diamond_boots", "action": "enchant",
           "gold": 1600, "enchants": "unbreaking:3,feather_falling:4,depth_strider:3,mending:1,blast_protection:4,fire_protection:4,projectile_protection:4,protection:4" },
-        {"name": "Jaggy Leggings", "description": "Leggings forged in the ancient days by Jaggy.", "location": "22", "icon": "diamond_leggings", "action": "enchant",
+        {"name": "Jaggy Leggings", "type": "item", "description": "Leggings forged in the ancient days by Jaggy. 1600 Gold", "location": "22", "icon": "diamond_leggings", "action": "enchant",
           "gold": 1600, "enchants": "unbreaking:3,mending:1,blast_protection:4,fire_protection:4,projectile_protection:4,protection:4" },
-        {"name": "Jaggy Helmet", "description": "A helmet forged in the ancient days by Jaggy.", "location": "23", "icon": "diamond_helmet", "action": "enchant",
+        {"name": "Jaggy Helmet", "type": "item", "description": "A helmet forged in the ancient days by Jaggy. 1600 Gold", "location": "23", "icon": "diamond_helmet", "action": "enchant",
           "gold": 1600, "enchants": "aqua_affinity:1,respiration:3,unbreaking:3,mending:1,blast_protection:4,fire_protection:4,projectile_protection:4,protection:4" }
       ]
     },
@@ -50,11 +34,11 @@
       "label": "Rare Items.",
       "type": "menu",
       "items": [
-        {"label": "Nether Star", "location": "21", "icon": "nether_star", "action": "Item",
+        {"name": "Nether Star", "type": "item", "description": "Nether Star", "location": "21", "icon": "nether_star", "action": "Item",
           "gold": 800 },
-        {"label": "Golden Apple", "location": "22", "icon": "golden_apple", "action": "Item",
+        {"name": "Golden Apple", "type": "item", "description": "Golden Apple", "location": "22", "icon": "golden_apple", "action": "Item",
           "gold": 800 },
-        {"label": "Golden Carrot", "location": "23", "icon": "golden_carrot", "action": "Item",
+        {"name": "Golden Carrot", "type": "item", "description": "Golden Carrot", "location": "23", "icon": "golden_carrot", "action": "Item",
           "gold": 800 }
       ]
     }

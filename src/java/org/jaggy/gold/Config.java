@@ -44,7 +44,7 @@ public class Config {
     /**
      * Set the default gold to give for Votifier
      */
-    private double defaultVotifier = 0.5;
+    private long defaultVotifier = 1;
 
 
     /**
@@ -54,23 +54,8 @@ public class Config {
     public Config(Main main) {
         plugin = main;
 
-        //load config.yml
-        File File = new File(plugin.getDataFolder(), "JaggedGold/config.yml");
-        if (File.exists()) { // config.yml exists? use it
-            config = plugin.getConfig();
-        } else { // neither exists yet (new installation), create and use it
-            plugin.saveDefaultConfig();
-            config = plugin.getConfig();
-        }
-
+        this.load();
     }
-
-    /**
-     * Access this class for GoldManager
-     */
-    public Config() {
-    }
-
 
     /**
      * Gets the database name.
@@ -130,8 +115,8 @@ public class Config {
      *
      * @return String
      */
-    public Double getVotifier() {
-        return config.getDouble("Votifier", defaultVotifier);
+    public Long getVotifier() {
+        return config.getLong("Votifier", defaultVotifier);
     }
 
     /**
@@ -144,4 +129,14 @@ public class Config {
     }
 
 
+    public void load() {
+        //load config.yml
+        File File = new File(plugin.getDataFolder(), "JaggedGold/config.yml");
+        if (File.exists()) { // config.yml exists? use it
+            config = plugin.getConfig();
+        } else { // neither exists yet (new installation), create and use it
+            plugin.saveDefaultConfig();
+            config = plugin.getConfig();
+        }
+    }
 }

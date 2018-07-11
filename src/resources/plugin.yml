@@ -6,5 +6,13 @@ softdepend: [Votifier]
 
 commands:
    goldshop:
-      description: Main command
+      description: shop command
+      aliases: shop
       usage: /goldshop
+   gold:
+      description: Gold Manager command
+      usage: /gold
+permissions:
+    jaggygold.admin:
+        description: Gives access to gold command.
+        default: op

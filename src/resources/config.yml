@@ -23,4 +23,4 @@ useSSL: false
 #
 
 # How much gold to get for voting.
-Votifier: 0.5
+Votifier: 1

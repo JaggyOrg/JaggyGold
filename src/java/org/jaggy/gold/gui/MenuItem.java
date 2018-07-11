@@ -45,9 +45,15 @@ public class MenuItem {
     public ArrayList<String> enchants = new ArrayList<String>();
 
     /**
+     * Stores the paypal url for Jaggy Gold
+     */
+    public String url;
+
+    /**
      * Store child items of menu
      */
     public JSONArray items;
+    public Long amount;
 
     public MenuItem(String name, String icon, String action, String type, String description, Material material) {
         this.name = name;
@@ -70,11 +76,27 @@ public class MenuItem {
         }
     }
 
+    /**
+     * Parse and set the location of the item
+     * @param location
+     */
     public void setLocation(String location) {
         this.location = Integer.parseInt(location);
     }
 
+    /**
+     * Sets the sub items of a menu
+     * @param items
+     */
     public void setItems(JSONArray items) {
         this.items = items;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setAmount(Long gold) {
+        this.amount = gold;
     }
 }

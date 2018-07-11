@@ -13,7 +13,7 @@ public class GoldShop implements CommandExecutor {
         plugin = main;
     }
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player) {
             plugin.gui.displayMainMenu(((Player) sender).getPlayer());
         }
